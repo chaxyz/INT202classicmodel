@@ -1,8 +1,6 @@
 package sit.int202.classicmodeltue.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -12,6 +10,11 @@ import lombok.ToString;
 @Getter
 @ToString
 @Table(name = "employees")
+@NamedQueries({
+        @NamedQuery(name="EMPLOYEE.FIND_ALL",query = "SELECT e from Employee e"),
+        @NamedQuery(name="EMPLOYEE.FIND_BY_NAME",query = "select e from  Employee e WHERE e.firstName like :first_name OR "
+        + "e.lastName like :last_name")
+})
 public class Employee {
     @Id
     private Integer employeeNumber;
